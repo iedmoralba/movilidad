@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moveable/0.42.2/moveable.min.js"></script>
+	<script type="text/javascript" src="js/escalarCentrar.js"></script>
+	<script type="text/javascript" src="js/codeMoveable.js"></script>
+	<script type="text/javascript" src="js/controlAnimations.js"></script>
+	<title>Moralba Movilidad</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+		@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@300&display=swap" rel="stylesheet');
+		*{border: 0; padding: 0; margin: 0; box-sizing: border-box;}
+		#lienzo{
+			width: 731px;
+			height: 411px;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			position: relative;
+			overflow: hidden;
+			user-select: none;
+		}
+		#fondo{
+			background-image: url('img/fondo2.jpg');
+			top: 0; left: 0;
+			width: 731px;
+			height: 411px;
+			position: absolute;
+		}
+		#mapa{
+			position: absolute;
+			user-select: none;
+			display: none;
+		}
+		.cuadro{
+			position: absolute;
+			top: 0px; left: 0px;
+			width: 115px;
+		    height: 61px;
+		    display: flex;
+		    align-items: center;
+		    text-align: center;
+		    justify-content: center;
+		}
+		.black{
+			border-radius: 5px;
+			font-family: 'Acme';
+		}
+		.gris{
+			color: black;
+			cursor: move;
+			font-family: 'Acme';
+			display: none;
+		}
+		#c1{top: 173px; left: 77px;}
+		#c2{top: 67px; left: 227px;}
+		#c3{top: 173px; left: 227px;}
+		#c4{top: 278px; left: 227px;}
+		#c5{top: 35px; left: 379px; display: none;}
+		#c6{top: 100px; left: 379px;}
+		#c7{top: 140px; left: 539px;}
+		#c8{top: 205px; left: 539px; display: none;}
+		#c9{top: 245px; left: 382px;}
+		#c10{top: 311px; left: 382px;}
+
+		#c11{top: 303px; left: 537px;}
+		#c12{top: 67px; left: 598px;}
+		#c13{top: 350px; left: 260px;}
+		#c14{top: 42px; left: 56px;}
+		#c15{top: 65px; left: 40px;}
+		#c16{top: 340px; left: 99px;}
+		#c17{top: 290px; left: 16px;}
+		#c18{top: 16px; left: -7px;}
+		#c19{top: 25px; left: 512px;}
+		#c20{top: 340px; left: 612px;}
+	</style>
+	<!--estilos diag-->
+	<style type="text/css">
+		.diag{
+			position: absolute;
+			top: 0px; left: 0px;
+			width: 731px;
+			height: 150px;
+			z-index: 5;
+		}
+		#diag1{
+			top: 260px; left: 0px;
+			display: none;
+		}
+		.diag .rect{
+			position: absolute;
+			width: 731px;
+			height: 150px;
+			background-color: black;
+			opacity: 0.8;
+		}
+		.diag .policia{
+			width: 100px;
+			position: absolute;
+			left: 20px;
+			top: -40px;
+		}
+		.diag .titulo{
+			position: absolute;
+			color: white;
+			width: 420px;
+			left: 140px;
+			top: 15px;
+			font-size: 24px;
+			font-family: 'Acme', cursive;
+		}
+		.diag .ctxt{
+			position: absolute;
+			color: white;
+			width: 500px;
+			left: 140px;
+			top: 45px;
+			font-size: 18px;
+			font-family: 'Ysabeau Infant', sans-serif;
+		}
+		.diag #play{
+			position: absolute;
+			width: 70px;
+			top: 44px;
+			left: 650px;
+			background-color: white;
+			border-radius: 50%;
+			cursor: pointer;
+			border: 5px solid white;
+		}
+		#recargar{
+			width: 38px;
+			top: 95px;
+			left: 640px;
+			cursor: pointer;
+			display: none;
+		}
+	</style>
+	<!--estilos del menu-->
+	<style type="text/css">
+		#menu {
+			position: absolute;
+			top: 5px; right: 35px;
+			z-index: 2;
+		}
+		.btnmenu{
+			position: absolute;
+			width: 30px; height: 30px;
+			left: 0px;
+			opacity: 0;
+			transition: top 0.5s ease, opacity 0.5s ease;
+			cursor: pointer;
+		}
+		#btnmenu{
+			top: 0px;
+			width: 30px; height: 30px;
+			background-image: url('img/menu.svg'); 
+			background-size: 100% 100%; 
+			transition: transform 0.5s ease;
+			animation-duration: 1s;
+			position: absolute;
+			z-index: 2;
+			cursor: pointer;
+			background-color: white;
+			border-radius: 50%;
+		}
+		#btnfulls{
+			top: 0px;
+			background-image: url('img/btnfs.svg'); 
+			background-size: 100% 100%; 
+			animation-duration: 1s;
+		}
+		#btncerrar{
+			top: 0px;
+			background-image: url('img/btncerrar2.svg'); 
+			background-size: 100% 100%;
+			animation-duration: 1.5s;
+		}
+	</style>
+	<!--animaciones-->
+	<style type="text/css">
+		.fadeInUp{animation: fadeInUp; animation-duration: 1s; animation-fill-mode: forwards;}
+		.fadeOutDown{animation: fadeOutDown; animation-duration: 1s; animation-fill-mode: forwards;}
+		.bounceIn{animation: bounceIn; animation-duration: 1s; animation-fill-mode: forwards;}
+		.rotateIn{animation: rotateIn; animation-duration: 1s; animation-fill-mode: forwards;}
+
+		.pulse{animation: pulse; animation-duration: 1s; animation-iteration-count: infinite;}
+		.zoomOut{animation: zoomOut; animation-duration: 1s; animation-fill-mode: forwards;}
+		.zoomIn{animation: zoomIn; animation-duration: 1s; animation-fill-mode: forwards;}
+		.rubberBand{animation: rubberBand; animation-duration: 1s; animation-fill-mode: forwards;}
+		.tada{animation: tada; animation-duration: 1s; animation-fill-mode: forwards;}
+		.heartBeat{animation: heartBeat; animation-duration: 1s; animation-fill-mode: forwards;}
+		.jackInTheBox{animation: jackInTheBox; animation-duration: 1s; animation-fill-mode: forwards;}
+		.bounceOut{animation: bounceOut; animation-duration: 1s; animation-fill-mode: forwards;}
+	</style>
+</head>
+<body>
+	<div id="marco">
+		<div id="lienzo">
+			<div id="fondo"></div>
+
+			<img src="img/mapa.svg" id="mapa">
+
+			<div class="cuadro black" id="c1"><!--Señales de tránsito--></div>
+			<div class="cuadro black" id="c2"><!--Señales informativas--></div>
+			<div class="cuadro black" id="c3"><!--Señales preventivas--></div>
+			<div class="cuadro black" id="c4"><!--Señales reglamentarias--></div>
+			<div class="cuadro black" id="c5">Azul</div>
+			<div class="cuadro black" id="c6"><!--Rectangular--></div>
+			<div class="cuadro black" id="c7"><!--Amarillo--></div>
+			<div class="cuadro black" id="c8">Rombo</div>
+			<div class="cuadro black" id="c9"><!--Rojo--></div>
+			<div class="cuadro black" id="c10"><!--Circular--></div>
+
+			<div class="cuadro gris" id="c11">Señales de tránsito</div>
+			<div class="cuadro gris" id="c12">Señales informativas</div>
+			<div class="cuadro gris" id="c13">Señales preventivas</div>
+			<div class="cuadro gris" id="c14">Señales reglamentarias</div>
+			<!--<div class="cuadro gris" id="c15">Azul</div>-->
+			<div class="cuadro gris" id="c16">Rectangular</div>
+			<div class="cuadro gris" id="c17">Amarillo</div>
+			<!--<div class="cuadro gris" id="c18">Rombo</div>-->
+			<div class="cuadro gris" id="c19">Rojo</div>
+			<div class="cuadro gris" id="c20">Circular</div>
+
+			<!--diag-->
+			<div class="diag" id="diag1" pos="arriba">
+				<div class="rect"></div>
+				<img src="img/pidle.svg" class="policia">
+				<div class="titulo">Actividad:</div>
+				<div class="ctxt">
+					Completa el mapa mental, arrastrando y soltando las palabras que están fuera de los recuadros blancos, hasta que las palabras queden organizadas de forma coherente y veraz. Presiona el botón para iniciar.
+				</div>
+				<img src="img/btnplay.svg" id="play">
+				<img src="img/recargar.svg" id="recargar">
+			</div>
+
+			<!--menu-->
+			<div id="menu" class="">
+				<div id="btnmenu"></div>
+				<div id="btnfulls" class="btnmenu"></div>
+				<div id="btncerrar" class="btnmenu"></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		let diag1=document.getElementById('diag1');
+		let ctxt=document.querySelector(".ctxt");
+		let titulo=document.querySelector(".titulo");
+		let btnplay=document.getElementById("play");
+		let policia=document.querySelector(".policia");
+		let recargar=document.getElementById('recargar');
+		let mapa=document.getElementById('mapa');
+		let c5=document.getElementById('c5');
+		let c8=document.getElementById('c8');
+	</script>
+	<script type="text/javascript">
+		function dragElementsGris(){
+			let g=document.getElementsByClassName('gris');
+			let arrayg = Array.from(g);
+			createMoveableArray(arrayg);
+		}
+		function obtenerPropiedad(propiedad,element){
+			const cssObj = window.getComputedStyle(element, null);
+			let p=cssObj.getPropertyValue(propiedad);
+			return(p);
+		}
+		function guardarPosInicial(){
+			let g=document.querySelectorAll('.gris');
+			g.forEach(function(item){
+				let top = obtenerPropiedad('top',item);
+				let left = obtenerPropiedad('left',item);
+				let c=top+":"+left;
+				item.setAttribute("posi",c);
+			});
+		}
+		function asignarPosInicial(){
+			let g=document.querySelectorAll('.black');
+			g.forEach(function(item){
+				const cssObj = window.getComputedStyle(item, null);
+				let top = cssObj.getPropertyValue("top");
+				let left = cssObj.getPropertyValue("left");
+				item.setAttribute("style",`top:${top}; left:${left}`);
+			});
+		}
+		function checarColisiones(e){
+			//console.log(e);
+			let div1=e.target;
+			let encontrado=false;
+			let espacios=document.querySelectorAll(".black");
+			for(let i=0;i<espacios.length;i++){
+				let div2=espacios[i];
+				if(estaTocando(div1,div2,10)){
+					let top=obtenerPropiedad('top',div2);
+					let left=obtenerPropiedad('left',div2);
+					//console.log(top,left);
+					div1.style.top=top;
+					div1.style.left=left;
+					div2.style.backgroundColor="transparent";
+					encontrado=true;
+					break;
+				}else{
+
+				}
+			}
+			if(encontrado===false){
+				//console.log("devolver al origen");
+				let origen=div1.getAttribute("posi").split(":");
+				let py=origen[0];
+				let px=origen[1];
+				colocarTransicion(div1,'top 1s ease, left 1s ease');
+				div1.style.top=py;
+				div1.style.left=px;
+			}
+		}
+		function estaTocando(element1, element2, distance){
+			const rect1 = element1.getBoundingClientRect();
+			const rect2 = element2.getBoundingClientRect();
+			//console.log(rect1);
+			//console.log(rect2);
+			let dx=Math.abs(rect1.x - rect2.x);
+			let dy=Math.abs(rect1.y - rect2.y);
+			//console.log(dx)
+			//console.log(dy)
+			if(dx < distance && dy < distance){
+				//console.log("estan tocando");
+				return(true);
+			}else{
+				//console.log("no esta tocando");
+				return(false);
+			}
+		}
+		function colocarTransicion(element,transicion){
+			element.style.transition=transicion;
+			element.addEventListener("transitionend",transicionEnd);
+		}
+		function transicionEnd(){
+			event.target.style.transition="";
+			event.target.removeEventListener("transicionend",transicionEnd);
+		}
+		function mostrarEspacios(e){
+			//console.log("listo para mostrar");
+			let div1=e.target;
+			let encontrado=false;
+			let espacios=document.querySelectorAll(".black");
+			for(let i=0;i<espacios.length;i++){
+				let div2=espacios[i];
+				if(estaTocando(div1,div2,10)){
+					div2.style.backgroundColor="rgba(0, 187, 18, 0.3)";
+				}else{
+					div2.style.backgroundColor="transparent";
+				}
+			}
+		}
+		function evaluarColision(){
+			if(estaTocando(document.getElementById("c11"),document.getElementById("c1"),10)){
+				if(estaTocando(document.getElementById("c12"),document.getElementById("c2"),10)){
+					if(estaTocando(document.getElementById("c13"),document.getElementById("c3"),10)){
+						if(estaTocando(document.getElementById("c14"),document.getElementById("c4"),10)){
+							if(estaTocando(document.getElementById("c16"),document.getElementById("c6"),10)){
+								if(estaTocando(document.getElementById("c17"),document.getElementById("c7"),10)){
+									if(estaTocando(document.getElementById("c19"),document.getElementById("c9"),10)){
+										if(estaTocando(document.getElementById("c20"),document.getElementById("c10"),10)){
+											return(true);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}else{
+				return(false);
+			}
+		}
+		function moverA(element,top,left,time){
+			element.style.transition=`top ${time}s ease, left ${time}s ease`;
+			setTimeout(function(){
+				element.style.top=top+"px";
+				element.style.left=left+"px";
+			},0);
+		}
+		function mostrarMsg(number,datos){
+			switch(number){
+				case 1:
+				titulo.textContent="Actividad";
+				ctxt.textContent="Cuando hayas organizado todas las palabras, presiona el botón azul para hacer una revisión de tu trabajo.";
+				policia.setAttribute("src","img/pidle.svg");
+				break;
+				case 2:
+					titulo.textContent="Actividad revisada";
+					ctxt.textContent="Hay errores en el mapa mental, revisa y corrige.";
+					policia.setAttribute("src","img/pstop.svg");
+				break;
+				case 3:
+					titulo.textContent="Actividad finalizada";
+					ctxt.textContent="!Muy bien!, has organizado de forma correcta los elementos del mapa mental.";
+					policia.setAttribute("src","img/pbien.svg");
+				break;
+			}
+		}
+		function playAnimation(number,funcion){
+			switch(number){
+				case 1:
+					//sube el diag
+					diag1.style.display="block";
+					agregarAnimacion(diag1,'fadeInUp',funcion);
+				break;	
+				case 2:
+					//baja el diag
+					agregarAnimacion(diag1,'fadeOutDown',function(){
+						diag1.style.display="none";
+					});
+				break;
+				case 3:
+					//muestra el mapa
+					mapa.style.display="block";
+					agregarAnimacion(mapa,'bounceIn');
+				break;
+				case 4:
+					//agrega animacion a las palabras
+					let pg=document.querySelectorAll(".gris");
+					pg.forEach(function(item){
+						item.style.display="flex";
+						agregarAnimacion(item,'rotateIn');
+					});
+					c5.style.display="flex";
+					c8.style.display="flex";
+					agregarAnimacion(c5,'rotateIn');
+					agregarAnimacion(c8,'rotateIn');
+				break;
+				case 5:
+					playAnimation(1);
+					setTimeout(function(){playAnimation(3);},500);
+				break;
+				case 6:
+					moverA(diag1,410,0,1);
+					diag1.pos="down";
+					setTimeout(function(){
+						playAnimation(4);
+						mostrarMsg(1);
+					},500);
+					btnplay.estado=2;
+				break;
+			}
+		}
+		//impedir que dos textos queden en la misma caja
+	</script>
+	<script type="text/javascript">
+		window.onload=function(){
+			btnplay.estado=1;
+			diag1.pos="up";
+			guardarPosInicial();
+			//asignarPosInicial();
+			dragElementsGris();
+			playAnimation(5);
+		}
+	</script>
+	<!--botones-->
+	<script type="text/javascript">
+		diag1.addEventListener("click",function(){
+			let pos=diag1.pos;
+			if(pos==="up"){
+				moverA(diag1,410,0,1);
+				diag1.pos="down";
+			}else{
+				moverA(diag1,260,0,1);
+				diag1.pos="up";
+			}
+		});
+
+		recargar.addEventListener('click',function(){
+			window.location.reload();
+		});
+
+		btnplay.addEventListener("click",function(event){
+			event.stopPropagation();
+			switch(this.estado){
+				case 1:
+					playAnimation(6);
+				break;
+				case 2:
+					let r=evaluarColision();
+					if(r){
+						mostrarMsg(3);
+					}else{
+						mostrarMsg(2);
+						setTimeout(function(){mostrarMsg(1);},5000);
+					}
+				break;
+			}
+		});
+	</script>
+
+	<!--script del menu-->
+	<script type="text/javascript">
+		let menu=document.getElementById("menu");
+		let btnmenu=document.getElementById("btnmenu");
+		let btnfulls=document.getElementById("btnfulls");
+		let btncerrar=document.getElementById("btncerrar");
+
+		btnmenu.addEventListener("click", function(){
+			if(menu.classList.contains('open')){
+				plegarMenu();
+			}else{
+				desplegarMenu();
+			}
+		});
+		btnfulls.addEventListener("click",function(){
+			toggleFullscreen(document.getElementById("marco"));
+		});
+		btncerrar.addEventListener("click",function(){
+			console.log("esperando codigo para cerrar");
+			plegarMenu();
+		});
+		function desplegarMenu(){
+			btnmenu.style.transform="rotate(90deg)";
+			addStyle(btnfulls,{'top':'35px','opacity':'1'});
+			addStyle(btncerrar,{'top':'70px','opacity':'1'});
+			menu.classList.add("open");
+		}
+		function plegarMenu(){
+			btnmenu.style.transform="rotate(0deg)";
+			addStyle(btnfulls,{'top':'0px','opacity':'0'});
+			addStyle(btncerrar,{'top':'0px','opacity':'0'});
+			menu.classList.remove("open");
+		}
+		function toggleFullscreen(element) {
+			if (
+				!document.fullscreenElement &&
+				!document.mozFullScreenElement && 
+				!document.webkitFullscreenElement && 
+				!document.msFullscreenElement
+		  ) { // El elemento no está en modo de pantalla completa
+				colocarFullS(element);
+			ponerIconoQF();
+			plegarMenu();
+		  } else { // El elemento está en modo de pantalla completa
+		  	quitarFullS(element);
+		  	ponerIconoF();
+		  	plegarMenu();
+		  }
+		}
+		function colocarFullS(element){
+			if (element.requestFullscreen) {
+				element.requestFullscreen();
+			} else if (element.mozRequestFullScreen) {
+				element.mozRequestFullScreen();
+			} else if (element.webkitRequestFullscreen) {
+				element.webkitRequestFullscreen();
+			} else if (element.msRequestFullscreen) {
+				element.msRequestFullscreen();
+			}
+		}
+		function quitarFullS(element){
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitExitFullscreen) {
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+		}
+		function ponerIconoQF(){btnfulls.style.backgroundImage="url('img/btnfs2.svg')";}
+		function ponerIconoF(){btnfulls.style.backgroundImage="url('img/btnfs.svg')";}
+		function addStyle(element, stylejson) {
+			for (const property in stylejson) {
+		        //console.log(`${property}: ${stylejson[property]}`);
+		        element.style[property] = stylejson[property];
+		    }
+		}
+	</script>
+</body>
+</html>
