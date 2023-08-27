@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<script type="text/javascript" src="js/escalarCentrar.js"></script>
+	<script type="text/javascript" src="js/preload.js"></script>
+	<script type="text/javascript" src="js/controlAnimations.js"></script>
+	<title>MoralbaMovilidad</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+		@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@300&display=swap" rel="stylesheet');
+		*{border: 0; padding: 0; margin: 0; box-sizing: border-box; position: absolute;}
+		#lienzo{
+			width: 731px;
+			height: 411px;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			position: relative;
+			overflow: hidden;
+			user-select: none;
+		}
+		#fondo{
+			background-image: url('img/fondo2.jpg');
+			top: 0; left: 0;
+			width: 731px;
+			height: 411px;
+		}
+	</style>
+
+	<!--estilos diag-->
+	<style type="text/css">
+		.diag{
+			position: absolute;
+			top: 0px; left: 0px;
+			width: 731px;
+			height: 150px;
+			z-index: 5;
+		}
+		#diag1{
+			top: 260px; left: 0px;
+			display: none;
+		}
+		.diag .rect{
+			position: absolute;
+			width: 731px;
+			height: 150px;
+			background-color: black;
+			opacity: 0.8;
+		}
+		.diag .policia{
+			width: 100px;
+			position: absolute;
+			left: 20px;
+			top: -40px;
+		}
+		.diag .titulo{
+			position: absolute;
+			color: white;
+			width: 420px;
+			left: 140px;
+			top: 15px;
+			font-size: 24px;
+			font-family: 'Acme', cursive;
+		}
+		.diag .ctxt{
+			position: absolute;
+			color: white;
+			width: 500px;
+			left: 140px;
+			top: 45px;
+			font-size: 18px;
+			font-family: 'Ysabeau Infant', sans-serif;
+		}
+		.diag #play{
+			position: absolute;
+			width: 70px;
+			top: 44px;
+			left: 650px;
+			background-color: white;
+			border-radius: 50%;
+			cursor: pointer;
+			border: 5px solid white;
+		}
+		#recargar{
+			width: 38px;
+			top: 95px;
+			left: 640px;
+			cursor: pointer;
+			display: none;
+		}
+	</style>
+
+	<!--estilos del menu-->
+	<style type="text/css">
+		#menu {
+			position: absolute;
+			top: 5px; right: 35px;
+			z-index: 2;
+		}
+		.btnmenu{
+			position: absolute;
+			width: 30px; height: 30px;
+			left: 0px;
+			opacity: 0;
+			transition: top 0.5s ease, opacity 0.5s ease;
+			cursor: pointer;
+		}
+		#btnmenu{
+			top: 0px;
+			width: 30px; height: 30px;
+			background-image: url('img/menu.svg'); 
+			background-size: 100% 100%; 
+			transition: transform 0.5s ease;
+			animation-duration: 1s;
+			position: absolute;
+			z-index: 2;
+			cursor: pointer;
+			background-color: white;
+			border-radius: 50%;
+		}
+		#btnfulls{
+			top: 0px;
+			background-image: url('img/btnfs.svg'); 
+			background-size: 100% 100%; 
+			animation-duration: 1s;
+		}
+		#btncerrar{
+			top: 0px;
+			background-image: url('img/btncerrar2.svg'); 
+			background-size: 100% 100%;
+			animation-duration: 1.5s;
+		}
+	</style>
+
+	<!--estilos del poster-->
+	<style type="text/css">
+		#poster{
+			display: block;
+		}
+		#poster1{
+			display: block;
+		}
+		.poster1{
+			top: 0px; left: 0px;
+		}
+		#p1{
+			width: 150px;
+			top: -170px;
+			left: 60px;
+			display: none;
+		}
+		#p2{
+			width: 200px;
+			top: -170px;
+			left: -90px;
+			display: none;
+		}
+		#p3{
+			width: 200px;
+			top: -170px;
+			left: -250px;
+			display: none;
+		}
+	</style>
+
+	<style type="text/css">
+		#sinfor,#sprev,#sregla{
+			top: 0px;
+			left: 0px;
+			width: 87%;
+			height: 260px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			bottom: 154px;
+			right: 0px;
+			margin: auto;
+			display: none;
+		}
+		.senal{
+			width: 80px;
+			display: block;
+			position: relative;
+			cursor: pointer;
+			display: none;
+		}
+	</style>
+
+	<!--animaciones-->
+	<style type="text/css">
+		.pulse{animation: pulse; animation-duration: 1s; animation-iteration-count: infinite;}
+		.zoomOut{animation: zoomOut; animation-duration: 1s; animation-fill-mode: forwards;}
+		.zoomIn{animation: zoomIn; animation-duration: 1s; animation-fill-mode: forwards;}
+		.fadeInUp{animation: fadeInUp; animation-duration: 1s; animation-fill-mode: forwards;}
+		.fadeOutDown{animation: fadeOutDown; animation-duration: 1s; animation-fill-mode: forwards;}
+		.rubberBand{animation: rubberBand; animation-duration: 1s; animation-fill-mode: forwards;}
+		.tada{animation: tada; animation-duration: 1s; animation-fill-mode: forwards;}
+		.heartBeat{animation: heartBeat; animation-duration: 1s; animation-fill-mode: forwards;}
+		.jackInTheBox{animation: jackInTheBox; animation-duration: 1s; animation-fill-mode: forwards;}
+		.bounceOut{animation: bounceOut; animation-duration: 1s; animation-fill-mode: forwards;}
+	</style>
+</head>
+<body>
+	<div id="marco">
+		<div id="lienzo">
+			<div id="fondo"></div>
+			<!--imagenes-->
+			<div id="poster">
+				<div id="poster1">
+					<img src="img/sinfor/1.svg" class="poster1" id="p1">
+					<img src="img/sprev/15.svg" class="poster1" id="p2">
+					<img src="img/sregla/29.svg" class="poster1" id="p3">
+				</div>
+			</div>
+
+			<!--informativas-->
+			<div id="sinfor"></div>
+
+			<!--informativas-->
+			<div id="sprev"></div>
+
+			<!--informativas-->
+			<div id="sregla"></div>
+
+			<!--diag-->
+			<div class="diag" id="diag1" pos="arriba">
+				<div class="rect"></div>
+				<img src="img/pidle.svg" class="policia">
+				<div class="titulo">Señales de tránsito:</div>
+				<div class="ctxt">
+					El objetivo de esta actividad es lograr que puedas reconocer la clasificación de las señales de tránsito que se encuentran sobre la vía. 
+				</div>
+				<img src="img/btnplay.svg" id="play">
+				<img src="img/recargar.svg" id="recargar">
+			</div>
+
+			<!--menu-->
+			<div id="menu" class="">
+				<div id="btnmenu"></div>
+				<div id="btnfulls" class="btnmenu"></div>
+				<div id="btncerrar" class="btnmenu"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--elementos-->
+	<script type="text/javascript">
+		let diag1=document.getElementById('diag1');
+		let ctxt=document.querySelector(".ctxt");
+		let titulo=document.querySelector(".titulo");
+		let btnplay=document.getElementById("play");
+		let policia=document.querySelector(".policia");
+		let recargar=document.getElementById('recargar');
+		let sinfor=document.getElementById("sinfor");
+		let sprev=document.getElementById("sprev");
+		let sregla=document.getElementById("sregla");
+		let p1=document.getElementById("p1");
+		let p2=document.getElementById("p2");
+		let p3=document.getElementById("p3");
+		let senales=['informativas','preventivas','reglamentarias'];
+	</script>
+
+	<!--funciones-->
+	<script type="text/javascript">
+		function moverA(element,top,left,time){
+			element.style.transition=`top ${time}s ease, left ${time}s ease`;
+			setTimeout(function(){
+				element.style.top=top+"px";
+				element.style.left=left+"px";
+			},0);
+		}
+		function desordenarArray(array){
+			array = array.sort(function() {return Math.random() - 0.5});
+		}
+		function playAnimation(number,funcion){
+			switch(number){
+				case 1:
+					//sube el diag
+					diag1.style.display="block";
+					agregarAnimacion(diag1,'fadeInUp',funcion);
+				break;	
+				case 2:
+					//baja el diag
+					agregarAnimacion(diag1,'fadeOutDown',function(){
+						diag1.style.display="none";
+					});
+				break;
+				case 3:
+					p1.style.display="block";
+					p2.style.display="block";
+					p3.style.display="block";
+					agregarAnimacion(p1,'zoomIn',funcion);
+					agregarAnimacion(p2,'zoomIn',funcion);
+					agregarAnimacion(p3,'zoomIn',funcion);
+				break;
+				case 4:
+					playAnimation(1);
+					playAnimation(3);
+				break;
+				case 5:
+					agregarAnimacion(p1,'zoomOut',function(){p1.style.display="none";});
+					agregarAnimacion(p2,'zoomOut',function(){p2.style.display="none";});
+					agregarAnimacion(p3,'zoomOut',function(){p3.style.display="none";});
+				break;
+				case 6:
+					playAnimation(5);
+					playAnimation(2);
+					detectPlayAnimationEnd([p1,p2,p3,diag1],function(){
+						mostrarMsg(2);
+						playAnimation(1);
+						esperar(500,function(){playAnimation(7);});
+						btnplay.estado=2;
+					});
+				break;
+				case 7:
+					sinfor.style.display="flex";
+					let h1=sinfor.querySelectorAll(".senal");
+					h1.forEach(function(item){
+						item.style.display="block";
+						agregarAnimacion(item,'jackInTheBox');
+					});
+				break;
+				case 8:
+					let h2=sinfor.querySelectorAll(".senal");
+					h2.forEach(function(item){
+						agregarAnimacion(item,'bounceOut',function(){item.style.display="none";});
+					});
+				break;
+				case 9:
+					playAnimation(8);
+					playAnimation(2);
+					//esperar(500,function(){playAnimation(2)});
+					detectPlayAnimationEnd([diag1],function(){
+						mostrarMsg(3);
+						playAnimation(1);
+						esperar(500,function(){playAnimation(10);});
+						btnplay.estado=3;
+					});
+				break;
+				case 10:
+					//muestra las señales preventivas
+					sprev.style.display="flex";
+					let h3=sprev.querySelectorAll(".senal");
+					h3.forEach(function(item){
+						item.style.display="block";
+						agregarAnimacion(item,'jackInTheBox');
+					});
+				break;
+				case 11:
+					//saca las señales preventivas
+					let h4=sprev.querySelectorAll(".senal");
+					h4.forEach(function(item){
+						agregarAnimacion(item,'bounceOut',function(){item.style.display="none";});
+					});
+				break;
+				case 12:
+					playAnimation(11);
+					playAnimation(2);
+					//esperar(500,function(){playAnimation(2)});
+					detectPlayAnimationEnd([diag1],function(){
+						mostrarMsg(4);
+						playAnimation(1);
+						esperar(500,function(){playAnimation(13);});
+						btnplay.estado=4;
+					});
+				break;
+				case 13:
+					//muestra las señales reglamentarias
+					sregla.style.display="flex";
+					let h5=sregla.querySelectorAll(".senal");
+					h5.forEach(function(item){
+						item.style.display="block";
+						agregarAnimacion(item,'jackInTheBox');
+					});
+				break;
+				case 14:
+					//saca las señales preventivas
+					let h6=sregla.querySelectorAll(".senal");
+					h6.forEach(function(item){
+						agregarAnimacion(item,'bounceOut',function(){item.style.display="none";});
+					});
+				break;
+				case 15:
+					playAnimation(14);
+					playAnimation(2);
+					detectPlayAnimationEnd([diag1],function(){
+						mostrarMsg(5);
+						playAnimation(1);
+						esperar(500,function(){playAnimation(3);});
+						btnplay.estado=5;
+					});
+				break;
+			}
+		}
+		/*
+		function aplicarAnimation(array,idanimation){
+			let indice=0;
+			let timer=setInterval(function(){
+				if(indice<array.length){
+					let item=array[indice];
+					item.classList.add(idanimation);
+					item.style.display="block";
+					if(idanimation==="tada" || idanimation==="heartBeat"){
+						eliminateClassAnimationEnd(item,idanimation,null);
+					}else{
+						eliminateClassAnimationEnd(item,idanimation,function(){item.style.display="none";});
+					}
+					indice++;
+				}else{
+					clearInterval(timer);
+					indice=0;
+				}
+			},100);
+		}
+		*/
+		function mostrarMsg(number,datos){
+			switch(number){
+				case 1:
+				titulo.textContent="Señales de tránsito";
+				ctxt.textContent="Las señales de tránsito se clasifican en: señales informativas, señales preventivas y señales reglamentarias.";
+				break;
+				case 2:
+				titulo.textContent="Señales informativas";
+				ctxt.textContent="Son señales que se utilizan para brindar información al conductor y peatón. Estas señales en su mayoría señalan lugares. Presiona sobre las señales que se muestran para conocer el nombre.";
+				btnplay.style.display="none";
+				break;
+				case 3:
+				titulo.textContent="Señales preventivas";
+				ctxt.textContent="Son señales que previenen al conductor y al peatón sobre posibles peligros en la vía. Presiona sobre las señales mostradas para conocer el nombre.";
+				btnplay.style.display="none";
+				break;
+				case 4:
+				titulo.textContent="Señales reglamentarias";
+				ctxt.textContent="Son señales que se deben cumplir de forma obligatoria por parte de los conductores y peatones. Presiona sobre las señales mostradas para conocer el nombre.";
+				btnplay.style.display="none";
+				break;
+				case 5:
+				titulo.textContent="Actividad finalizada";
+				ctxt.textContent="¡Felicitaciones!, hemos terminado esta actividad, espero hayas aprendido a reconocer algunas señales de transito informativas, preventivas y reglamentarias.";
+				break;
+				case 6:
+				titulo.textContent="Actividad";
+				ctxt.textContent=`Selecciona la forma, el color y la finalidad de las señales ${senales[0]}`;
+				break;
+				case 11:
+				titulo.textContent="Aeropuerto";
+				ctxt.textContent="Informa a los conductores o peatones la distancia o la dirección en la cual se encuentra un aeropuerto.";
+				break;
+				case 12:
+				titulo.textContent="Cruce peatonal";
+				ctxt.textContent="Indica que el conductor o peaton se esta acercando a un área donde hay un paso de peatones o donde los peatones cruzan la calle con frecuencia.";
+				break;
+				case 13:
+				titulo.textContent="Estación de servicio";
+				ctxt.textContent="Informa a conductores o peatones la dirección, distancia o el lugar mismo en el cual se encuentra una estación de servicio para surtir combustible.";
+				break;
+				case 14:
+				titulo.textContent="Hospedaje";
+				ctxt.textContent="Informa a los conductores o peatones la distancia, la dirección o el sitio mismo en el cual se encuentra un hotel o lugar destinado para la prestación de servicios de alojamiento.";
+				break;
+				case 15:
+				titulo.textContent="Iglesia";
+				ctxt.textContent="Informa a los conductores o peatones la dirección, distancia o el lugar mismo en el cual se encuentra una iglesia u oratorio destinado al culto.";
+				break;
+				case 16:
+				titulo.textContent="Discapacitados";
+				ctxt.textContent="Informa a los conductores o peatones la dirección, distancia o el lugar mismo en el cual se encuentra un lugar para estacionar exclusivo para personas con movilidad reducida.";
+				break;
+				case 17:
+				titulo.textContent="Montallantas";
+				ctxt.textContent="Informa a los conductores o peatones la dirección, distancia o el lugar mismo en el cual se encuentra un establecimiento destinado a prestar el servicio de reparación de llantas.";
+				break;
+				case 18:
+				titulo.textContent="Paradero de buses";
+				ctxt.textContent="Informa a los conductores o peatones la dirección, distancia o el lugar mismo en el cual se encuentra un sitio autorizado como parada o paradero de buses.";
+				break;
+				case 19:
+				titulo.textContent="Primeros auxilios";
+				ctxt.textContent="Informa a los conductores o peatones la dirección, distancia o el sitio mismo en el cual se encuentra un puesto de salud, hospital o instalaciones destinadas para la prestación de primeros auxilios.";
+				break;
+				case 20:
+				titulo.textContent="Restaurante";
+				ctxt.textContent="Informa a los conductores o peatones la dirección, distancia o el lugar mismo en el cual se encuentra un restaurante, cafetería o sitio de venta de alimentos y bebidas.";
+				break;
+				case 21:
+				titulo.textContent="Sitio de parqueo";
+				ctxt.textContent="Informa a los conductores la dirección, distancia o el lugar mismo en el cual se encuentra un sitio autorizado para el estacionamiento de vehículos.";
+				break;
+				case 22:
+				titulo.textContent="Taller";
+				ctxt.textContent="Informa a los conductores la dirección, distancia o el lugar mismo en el cual se encuentra un taller de mecánica para la reparación y mantenimiento de vehículos automotores.";
+				break;
+				case 23:
+				titulo.textContent="Teléfono";
+				ctxt.textContent="Informa a los conductores y peatones la dirección, distancia o el lugar mismo en el cual se encuentra un servicio telefónico para uso público.";
+				break;
+				case 24:
+				titulo.textContent="Zona militar";
+				ctxt.textContent="Informa a los conductores y peatones la dirección, distancia o el lugar mismo en el cual se encuentra una zona militar o policial, donde en dicha zona puedan operar reglamentaciones especiales para la circulación.";
+				break;
+				case 25:
+				titulo.textContent="Curva peligrosa a la izquierda";
+				ctxt.textContent="Advierte a los conductores la proximidad de una curva a la izquierda, que no puede ser transitada de forma segura con la velocidad máxima de circulación establecida para la vía.";
+				break;
+				case 26:
+				titulo.textContent="Curva pronunciada a la derecha";
+				ctxt.textContent="Advierte a los conductores la proximidad de una curva pronunciada a la derecha, que no puede ser transitada de forma segura con la velocidad máxima de circulación establecida para la vía.";
+				break;
+				case 27:
+				titulo.textContent="Curva y contracurva peligrosa izq - der";
+				ctxt.textContent="Advierte a los conductores la proximidad de dos curvas pronunciadas consecutivas, de las cuales la primera es hacia la izquierda y la segunda es hacia la derecha.";
+				break;
+				case 28:
+				titulo.textContent="Curvas sucesivas primera derecha";
+				ctxt.textContent="Advierte a los conductores que se aproximan a un sector de la vía con tres o más curvas consecutivas de las cuales la primera inicia hacia el lado derecho.";
+				break;
+				case 29:
+				titulo.textContent="Curva y contracurva pronunciada izq - der";
+				ctxt.textContent="Advierte a los conductores la proximidad de dos curvas pronunciadas consecutivas, de las cuales la primera es hacia la izquierda y la segunda es hacia la derecha.";
+				break;
+				case 30:
+				titulo.textContent="Intersección de vías";
+				ctxt.textContent="Advierte a los conductores que se aproximan a un cruce de vías, situación en la cual deberán estar atentos con los vehículos que convergen en la intersección.";
+				break;
+				case 31:
+				titulo.textContent="Glorieta";
+				ctxt.textContent="Advierte a los conductores que están próximos a llegar a una intersección rotatoria.";
+				break;
+				case 32:
+				titulo.textContent="Semáforo";
+				ctxt.textContent="Advierte a los usuarios la proximidad de una intersección de vías en las que se encuentra un semáforo. ";
+				break;
+				case 33:
+				titulo.textContent="Prevención de pare";
+				ctxt.textContent="Advierte a los usuarios la proximidad de una señal de PARE.";
+				break;
+				case 34:
+				titulo.textContent="Reducción asimétrica de la calzada izquierda";
+				ctxt.textContent="Advierte a los conductores que se aproximan a un tramo de la vía donde se reduce el ancho de la calzada, reduciendo o desapareciendo el carril izquierdo.";
+				break;
+				case 35:
+				titulo.textContent="Prevención de ceda el paso";
+				ctxt.textContent="Se utiliza en intersecciones y glorietas para indicarle a los conductores que deben ceder el paso a los vehículos que están transitando por la vía en la cual se quiere ingresar o circular.";
+				break;
+				case 36:
+				titulo.textContent="Circulación en dos sentidos";
+				ctxt.textContent="Advierte a los conductores que se encuentran transitando por una vía con un sólo sentido de circulación, que se aproximan a un tramo vial que dejará de poseer separador central y que su tránsito será en ambos sentidos.";
+				break;
+				case 37:
+				titulo.textContent="Tres carriles uno en contra flujo";
+				ctxt.textContent="Indica a los conductores que han ingresado en un tramo vial de tres carriles sin separador central, y que uno de esos tres carriles está operando en contraflujo (sentido opuesto)";
+				break;
+				case 38:
+				titulo.textContent="Zona escolar";
+				ctxt.textContent="Advierte a los conductores la probable presencia de jóvenes escolares transitando por la ruta.";
+				break;
+				case 39:
+				titulo.textContent="Pare";
+				ctxt.textContent="Indica a los conductores que deben detener su vehículo completamente y que sólo reanuden su recorrido cuando sea inexistente la posibilidad de un accidente.";
+				break;
+				case 40:
+				titulo.textContent="Ceda el paso";
+				ctxt.textContent="Indica a los conductores que deben ceder el paso a los vehículos que están transitando por la vía en la cual se quiere ingresar o circular.";
+				break;
+				case 41:
+				titulo.textContent="Siga de frente";
+				ctxt.textContent="Notifica a los conductores que están obligados a transitar sólo en el sentido y dirección indicado por la flecha.";
+				break;
+				case 42:
+				titulo.textContent="No pase";
+				ctxt.textContent="Notifica a los conductores la prohibición de ingresar a una zona restringida para el tránsito, o para notificar la prohibición de ingresar a una vía donde el tráfico circula en contraflujo.";
+				break;
+				case 43:
+				titulo.textContent="Giro a la izquierda solamente";
+				ctxt.textContent="Notifica a los conductores que el único sentido de circulación permitido, para uno o más carriles, es solamente el de giro a la izquierda.";
+				break;
+				case 44:
+				titulo.textContent="Prohibido girar a la derecha";
+				ctxt.textContent="Indica a los conductores que justo en el sitio en donde esta señal se encuentra instalada está prohibido girar a la derecha.";
+				break;
+				case 45:
+				titulo.textContent="Prohibido girar en u";
+				ctxt.textContent="Notifica a los conductores que no está permitido ejecutar un giro de aproximadamente 180°.";
+				break;
+				case 46:
+				titulo.textContent="Prohibido el cambio de calzada";
+				ctxt.textContent="Notifica a los conductores que no está permitido el cambio de calzada de izquierda a derecha.";
+				break;
+				case 47:
+				titulo.textContent="Vehículos pesados a la derecha";
+				ctxt.textContent="Notifica a los conductores de vehículos pesados de carga y buses que deben obligatoriamente transitar por el carril derecho";
+				break;
+				case 48:
+				titulo.textContent="Prohibido adelantar";
+				ctxt.textContent="Notifica a los conductores que está prohibido realizar cualquier maniobra con el objetivo de adelantar a uno o varios vehículos traspasando el eje central de la calzada.";
+				break;
+				case 49:
+				titulo.textContent="Prohibido parquear";
+				ctxt.textContent="Notifica a los conductores que está prohibido parquear o estacionarse a partir del lugar donde la señal está instalada hasta la próxima intersección.";
+				break;
+				case 50:
+				titulo.textContent="No parquear ni detenerse";
+				ctxt.textContent="Indica a los conductores que desde el preciso sitio en donde la señal se encuentra instalada hasta la siguiente intersección, está prohibido estacionar y detenerse.";
+				break;
+				case 51:
+				titulo.textContent="Velocidad máxima";
+				ctxt.textContent="Informa a los conductores la velocidad máxima permitida en la que pueden transitar, a partir del lugar en donde la señal esté instalada.";
+				break;
+				case 52:
+				titulo.textContent="Vía cerrada";
+				ctxt.textContent="Notifica a los conductores que a partir del sitio donde esta señalización se ha instalado, inicia un tramo de calle, carretera o ruta en el cual no está permitido circular.";
+				break;
+			}
+		}
+		function showImgInfor(){
+			for(let i=1;i<=14;i++){
+				let marco=document.createElement("img");
+				marco.setAttribute("src","img/sinfor/"+i+".svg");
+				marco.setAttribute("class","senal");
+				marco.indice=i;
+				sinfor.appendChild(marco);
+			}
+		}
+		function showImgPrev(){
+			for(let i=15;i<=28;i++){
+				let marco=document.createElement("img");
+				marco.setAttribute("src","img/sprev/"+i+".svg");
+				marco.setAttribute("class","senal");
+				marco.indice=i;
+				sprev.appendChild(marco);
+			}
+		}
+		function showImgRegla(){
+			for(let i=29;i<=42;i++){
+				let marco=document.createElement("img");
+				marco.setAttribute("src","img/sregla/"+i+".svg");
+				marco.setAttribute("class","senal");
+				marco.indice=i;
+				sregla.appendChild(marco);
+			}
+		}
+		function addEventSenales(){
+			let senales=document.querySelectorAll(".senal");
+			senales.forEach(function(item){
+				item.addEventListener("click",function(){
+					let txt=item.indice+10;
+					mostrarMsg(txt,null);
+					btnplay.style.display="block";
+				});
+			});
+		}
+		function esperar(tiempo,funcion){
+			let timer=setTimeout(function(){
+				funcion();
+				 clearTimeout(timer);
+			},tiempo);
+		}
+		/*
+		function showAsBlocks(array){
+			array.forEach(function(item){
+				item.style.display="block";
+			})
+		}
+		*/
+		/*
+		function getRndInteger(min, max) {
+			return Math.floor(Math.random() * (max - min + 1) ) + min;
+		}
+		*/
+		/*
+		function selectAzarPoster1(){
+			let i=getRndInteger(1,14);
+			let p=getRndInteger(15,28);
+			let r=getRndInteger(29,42);
+			p1.setAttribute('src','img/sinfor/'+i+'.svg');
+			p2.setAttribute('src','img/sprev/'+p+'.svg');
+			p3.setAttribute('src','img/sregla/'+r+'.svg');
+		}
+		*/
+	</script>
+
+	<!--code central-->
+	<script type="text/javascript">
+		window.onload=function(){
+			diag1.pos="up";
+			btnplay.estado=1;
+			showImgInfor();
+			showImgPrev();
+			showImgRegla();
+			addEventSenales();
+
+			//showAsBlocks([diag1,p1,p2,p3]);
+			playAnimation(4);
+			//selectAzarPoster1();
+		}
+	</script>
+
+	<!--botones-->
+	<script type="text/javascript">
+		diag1.addEventListener("click",function(){
+			let pos=diag1.pos;
+			if(pos==="up"){
+				moverA(diag1,410,0,1);
+				diag1.pos="down";
+			}else{
+				moverA(diag1,260,0,1);
+				diag1.pos="up";
+			}
+		});
+
+		recargar.addEventListener('click',function(){
+			window.location.reload();
+		});
+
+		btnplay.addEventListener("click",function(event){
+			event.stopPropagation();
+			switch(this.estado){
+				case 1:
+					playAnimation(6);
+				break;
+				case 2:
+				console.log("va el nuenve")
+					playAnimation(9);
+				break;
+				case 3:
+					playAnimation(12);
+				break;
+				case 4:
+					playAnimation(15);
+				break;
+			}
+		});
+	</script>
+
+	<!--script del menu-->
+	<script type="text/javascript">
+		let menu=document.getElementById("menu");
+		let btnmenu=document.getElementById("btnmenu");
+		let btnfulls=document.getElementById("btnfulls");
+		let btncerrar=document.getElementById("btncerrar");
+
+		btnmenu.addEventListener("click", function(){
+			if(menu.classList.contains('open')){
+				plegarMenu();
+			}else{
+				desplegarMenu();
+			}
+		});
+		btnfulls.addEventListener("click",function(){
+			toggleFullscreen(document.getElementById("marco"));
+		});
+		btncerrar.addEventListener("click",function(){
+			console.log("esperando codigo para cerrar");
+			plegarMenu();
+		});
+		function desplegarMenu(){
+			btnmenu.style.transform="rotate(90deg)";
+			addStyle(btnfulls,{'top':'35px','opacity':'1'});
+			addStyle(btncerrar,{'top':'70px','opacity':'1'});
+			menu.classList.add("open");
+		}
+		function plegarMenu(){
+			btnmenu.style.transform="rotate(0deg)";
+			addStyle(btnfulls,{'top':'0px','opacity':'0'});
+			addStyle(btncerrar,{'top':'0px','opacity':'0'});
+			menu.classList.remove("open");
+		}
+		function toggleFullscreen(element) {
+			if (
+				!document.fullscreenElement &&
+				!document.mozFullScreenElement && 
+				!document.webkitFullscreenElement && 
+				!document.msFullscreenElement
+		  ) { // El elemento no está en modo de pantalla completa
+				colocarFullS(element);
+			ponerIconoQF();
+			plegarMenu();
+		  } else { // El elemento está en modo de pantalla completa
+		  	quitarFullS(element);
+		  	ponerIconoF();
+		  	plegarMenu();
+		  }
+		}
+		function colocarFullS(element){
+			if (element.requestFullscreen) {
+				element.requestFullscreen();
+			} else if (element.mozRequestFullScreen) {
+				element.mozRequestFullScreen();
+			} else if (element.webkitRequestFullscreen) {
+				element.webkitRequestFullscreen();
+			} else if (element.msRequestFullscreen) {
+				element.msRequestFullscreen();
+			}
+		}
+		function quitarFullS(element){
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitExitFullscreen) {
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+		}
+		function ponerIconoQF(){btnfulls.style.backgroundImage="url('img/btnfs2.svg')";}
+		function ponerIconoF(){btnfulls.style.backgroundImage="url('img/btnfs.svg')";}
+		function addStyle(element, stylejson) {
+			for (const property in stylejson) {
+		        //console.log(`${property}: ${stylejson[property]}`);
+		        element.style[property] = stylejson[property];
+		    }
+		}
+	</script>
+</body>
+</html>
