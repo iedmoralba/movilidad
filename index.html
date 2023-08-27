@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="img/escudo.svg"> 
+	<title>Moralba Movilidad</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+		@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@300&display=swap" rel="stylesheet');
+
+		*{border: 0; padding: 0; margin: 0; box-sizing: border-box;}
+		#lienzo{
+			max-width: 1024px;
+			width: 100%;
+			padding: 100px 80px 50px 80px;
+			margin: 0 auto;
+		}
+		#sec1{
+			width: 100%;
+			display: flex;
+		}
+		#ncolegio{
+			font-family: 'Acme';
+			font-size: 20px;
+		}
+		.sep{
+			width: 100%;
+			height: 5px;
+			background-color: #0AD718;
+			border-bottom: 2px solid #07A931;
+			margin-bottom: 12px;
+			margin-top: 12px;
+		}
+		#sec2{
+			display: flex;
+			justify-content: flex-start;
+			margin-top: 30px;
+			align-items: flex-start;
+		}
+		#sec2 #txtintro{
+			width: 50%;
+			text-align: center;
+		}
+		#sec2 #txtintro h1{
+			font-size: 50px;
+			font-family: 'Acme';
+			letter-spacing: 2px;
+			align-items: left;
+		}
+		#sec2 img{
+			width: 35%;
+			margin: 0 auto;
+		}
+		#titulo{
+			margin: 10px 0px 10px 0px;
+			color: dimgray;
+			font-weight: bold;
+			font-family: 'Ysabeau Infant';
+		}
+		.parrafo{
+			font-size: 18px;
+			margin-top: 30px;
+			font-family: 'Sanchez', serif;
+		}
+		.parrafo2{
+			font-size: 18px;
+			margin-top: 10px;
+			font-family: 'Sanchez', serif;
+		}
+		#sec3{
+			padding-top: 20px;
+		}
+		#sec3 h1{
+			text-align: center;
+		    font-size: 30px;
+		    font-family: 'Love Ya Like A Sister';
+		    margin-bottom: 30px;
+		}
+		#sec3 h3{
+			font-family: 'Acme';
+			font-size: 25px;
+			margin-bottom: 10px;
+			letter-spacing: 0.5px;
+		}
+		#sec3 iframe{
+			max-width: 731px;
+			width: 100%;
+			aspect-ratio: 731/411;
+			display: block;
+			margin: 0 auto;
+			margin-top: 10px;
+			margin-bottom: 30px;
+		}
+		#mvirtual{
+			max-width: 731px;
+			width: 100%;
+			aspect-ratio: 731/411;
+			display: block;
+			margin: 0 auto;
+			margin-top: 10px;
+			margin-bottom: 30px;
+		}
+	</style>
+	<style type="text/css">
+		@media only screen and (max-width: 800px) {
+		  #lienzo{
+		  	padding: 80px 40px;
+		  }
+		  #sec2{
+		  	flex-direction: column-reverse;
+		  }
+		  #sec2 #txtintro {
+		  	width: 100%;
+		  }
+		}
+
+		@media only screen and (max-width: 500px) {
+		  #lienzo{
+		  	padding: 40px 20px;
+		  }
+		  #sec2{
+		  	flex-direction: column-reverse;
+		  }
+		  #sec2 #txtintro {
+		  	width: 100%;
+		  }
+		}
+		
+	</style>
+</head>
+<body>
+	<section id="lienzo">
+		<section id="sec1">
+			<div id="ncolegio">Colegio Moralba S.O</div>
+		</section>
+		<div class="sep"></div>
+		<section id="sec2">
+			<section id="txtintro">
+				<h1>IED Moralba Sur Oriental</h1>
+				<div id="titulo">- MORALBA MOVILIDAD -</div>
+				<p class="parrafo">
+					El proyecto transversal de riesgos y movilidad junto con el precto transversal TIC, presentan a la comunidad educativa el proyecto denominado Moralba Movilidad, que tiene la finalidad de fomentar una formación ciudadana para el reconocimiento de las normas de transito a traves de actividades educativas interactivas.
+				</p>
+			</section>
+			<img src="img/escudo.png" alt="Escudo del colegio">
+		</section>
+		<div class="sep"></div>
+		<section id="sec3">
+			<h1>- MORALBA MOVILIDAD -</h1>
+			<h3>Partes de la vía:</h3>
+			<p class="parrafo2">
+				Conoce las partes de la vía.
+			</p>
+			<iframe src="movs/mov1/index.html" frameborder="0"></iframe>
+
+			<h3>Clasificación de la señales de tránsito:</h3>
+			<p class="parrafo2">
+				Conoce las formas, colores e intenciones que tienen las diferentes señales de tránsito. 
+			</p>
+			<iframe src="movs/mov2/index.html" frameborder="0"></iframe>
+
+			<h3>Mapa mental de las señales de tránsito:</h3>
+			<p class="parrafo2">
+				Organiza de forma correcta los elementos del mapa mental de las señales de tránsito. 
+			</p>
+			<iframe src="movs/mov3/index.html" frameborder="0"></iframe>
+
+			<h3>Recorrido virtual:</h3>
+			<p class="parrafo2">
+				La fundación MAPFRE nos ofrece la oportunidad de hacer un recorrido virtual como peatones.
+			</p>
+			
+			<a href="https://www.fundacionmapfre.org/contenidos/prevencion-de-lesiones/el-mundo-virtual/seguridadymovilidad3s/?hct=EN,PT,EO&hot=EN,PT,EO&language=es">
+				<img src="img/rvirtual.png" id="mvirtual">
+			</a>
+
+			<h3>Juego:</h3>
+			<p class="parrafo2">
+				Conduce el auto rojo acatando las normas de tránsito que hay sobre la vía. 
+			</p>
+			<iframe src="movs/mov4/diap/diap1.html" frameborder="0"></iframe>
+		</section>
+	</section>
+</body>
+</html>
