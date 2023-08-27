@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<script type="text/javascript" src="js/escalarCentrar.js"></script>
+	<script type="text/javascript" src="js/preload.js"></script>
+	<title>MoralbaMovilidad</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet');
+		@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+		@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@300&display=swap" rel="stylesheet');
+		*{border: 0; padding: 0; margin: 0; box-sizing: border-box; position: absolute;}
+		#lienzo{
+			width: 731px;
+			height: 411px;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			position: relative;
+			overflow: hidden;
+			user-select: none;
+		}
+		#fondo{
+			background-image: url('img/fondo2.jpg');
+			top: 0; left: 0;
+			width: 731px;
+			height: 411px;
+		}
+		#escena{
+			display: none;
+		}
+	</style>
+
+	<!--estilos puntos-->
+	<style type="text/css">
+		#puntos{
+
+		}
+		.punto{
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: orange;
+			top: 0px; left: 0px;
+			display: none;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+		.punto:hover{
+			background-color: blue;
+		}
+		#punto1{
+			top: -102px;
+    		left: 241px;
+		}
+		#punto2{
+			    top: -95px;
+    			left: 180px;
+		}
+		#punto3{
+			top: 146px;
+    		left: -140px;
+		}
+		#punto4{
+			top: -45px;
+    		left: 197px;
+		}
+		#punto5{
+			top: 83px;
+    		left: -127px;
+		}
+		#punto6{
+			top: -127px;
+    		left: 40px;
+		}
+		#punto7{
+			top: -54px;
+    		left: 31px;
+		}
+		#punto8{
+			top: 32px;
+    		left: 139px;
+		}
+	</style>
+
+	<!--estilos diag-->
+	<style type="text/css">
+		.diag{
+			position: absolute;
+			top: 0px; left: 0px;
+			width: 731px;
+			height: 150px;
+			z-index: 5;
+		}
+		#diag1{
+			top: 260px; left: 0px;
+			display: none;
+		}
+		.diag .rect{
+			position: absolute;
+			width: 731px;
+			height: 150px;
+			background-color: black;
+			opacity: 0.8;
+		}
+		.diag .policia{
+			width: 100px;
+		    position: absolute;
+		    left: 20px;
+		    top: -40px;
+		}
+		.diag .titulo{
+			position: absolute;
+		    color: white;
+		    width: 420px;
+		    left: 140px;
+		    top: 15px;
+		    font-size: 24px;
+		    font-family: 'Acme', cursive;
+		}
+		.diag .ctxt{
+			position: absolute;
+		    color: white;
+		    width: 500px;
+		    left: 140px;
+		    top: 45px;
+		    font-size: 18px;
+		    font-family: 'Ysabeau Infant', sans-serif;
+		}
+		.diag #play{
+			position: absolute;
+		    width: 70px;
+		    top: 44px;
+		    left: 650px;
+		    background-color: white;
+		    border-radius: 50%;
+		    cursor: pointer;
+		    border: 5px solid white;
+		    display: none;
+		}
+		#recargar{
+			width: 38px;
+		    top: 95px;
+		    left: 640px;
+		    cursor: pointer;
+		    display: none;
+		}
+	</style>
+
+	<!--estilos del menu-->
+	<style type="text/css">
+		#menu {
+		  position: absolute;
+		  top: 5px; right: 35px;
+		  z-index: 2;
+		}
+		.btnmenu{
+			position: absolute;
+			width: 30px; height: 30px;
+			left: 0px;
+			opacity: 0;
+			transition: top 0.5s ease, opacity 0.5s ease;
+			cursor: pointer;
+		}
+		#btnmenu{
+			top: 0px;
+			width: 30px; height: 30px;
+			background-image: url('img/menu.svg'); 
+			background-size: 100% 100%; 
+			transition: transform 0.5s ease;
+			animation-duration: 1s;
+			position: absolute;
+			z-index: 2;
+			cursor: pointer;
+			background-color: white;
+			border-radius: 50%;
+		}
+		#btnfulls{
+			top: 0px;
+			background-image: url('img/btnfs.svg'); 
+			background-size: 100% 100%; 
+			animation-duration: 1s;
+		}
+		#btncerrar{
+			top: 0px;
+			background-image: url('img/btncerrar2.svg'); 
+			background-size: 100% 100%;
+			animation-duration: 1.5s;
+		}
+	</style>
+
+	<!--animaciones-->
+	<style type="text/css">
+		.pulse{animation: pulse; animation-duration: 1s; animation-iteration-count: infinite;}
+		.zoomOut{animation: zoomOut; animation-duration: 1s; animation-fill-mode: forwards;}
+		.zoomIn{animation: zoomIn; animation-duration: 1s; animation-fill-mode: forwards;}
+		.fadeInUp{animation: fadeInUp; animation-duration: 1s; animation-fill-mode: forwards;}
+		.fadeOutDown{animation: fadeOutDown; animation-duration: 1s; animation-fill-mode: forwards;}
+		.rubberBand{animation: rubberBand; animation-duration: 1s; animation-fill-mode: forwards;}
+	</style>
+</head>
+<body>
+	<div id="marco">
+		<div id="lienzo">
+			<div id="fondo"></div>
+
+			<img src="img/escena.svg" id="escena">
+
+			<div id="puntos">
+				<div class="punto" id="punto1"></div>
+				<div class="punto" id="punto2"></div>
+				<div class="punto" id="punto3"></div>
+				<div class="punto" id="punto4"></div>
+				<div class="punto" id="punto5"></div>
+				<div class="punto" id="punto6"></div>
+				<div class="punto" id="punto7"></div>
+				<div class="punto" id="punto8"></div>
+			</div>
+			<!--diag-->
+			<div class="diag" id="diag1" pos="arriba">
+					<div class="rect"></div>
+					<img src="img/pidle.svg" class="policia">
+					<div class="titulo">Partes de la vía:</div>
+					<div class="ctxt">
+						El objetivo de esta actividad es lograr que puedas reconocer las partes que componen una vía, dado que sobre estas partes se ubican las señales de tránsito que aprenderemos más adelante. Presiona sobre los puntos naranja para conocer las partes.
+					</div>
+					<img src="img/btnplay.svg" id="play">
+					<img src="img/recargar.svg" id="recargar">
+			</div>
+			<!--menu-->
+			<div id="menu" class="">
+				<div id="btnmenu"></div>
+				<div id="btnfulls" class="btnmenu"></div>
+				<div id="btncerrar" class="btnmenu"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--elementos-->
+	<script type="text/javascript">
+		let diag1=document.getElementById('diag1');
+		let escena=document.getElementById('escena');
+		let ctxt=document.querySelector(".ctxt");
+		let titulo=document.querySelector(".titulo");
+		let btnplay=document.getElementById("play");
+		let policia=document.querySelector(".policia");
+		let recargar=document.getElementById('recargar');
+	</script>
+
+	<!--funciones-->
+	<script type="text/javascript">
+		function moverA(element,top,left,time){
+			element.style.transition=`top ${time}s ease, left ${time}s ease`;
+			setTimeout(function(){
+				element.style.top=top+"px";
+				element.style.left=left+"px";
+			},0);
+		}
+		function eliminateClassAnimationEnd(element,clase,funcion){
+			element.elimclass=clase;
+			if(funcion!==null){element.playfunction=funcion;}
+			element.addEventListener('animationend',eliminateClass);
+		}
+		function eliminateClass(){
+			let clase=event.target.elimclass;
+			let funcion=event.target.playfunction;
+			if(funcion!==undefined){event.target.playfunction(); event.target.playfunction=undefined;}
+			event.target.classList.remove(clase);
+			event.target.elimclass="";
+			event.target.removeEventListener('animationend',eliminateClass);
+			console.log('evento removido');
+		}
+		function revisarLeidos(){
+			lecturas=0;
+			let puntos=document.querySelectorAll(".punto");
+			puntos.forEach(function(item){
+				console.log(item.leido);
+				if(item.leido){
+					lecturas++;
+					if(lecturas===8){
+						btnplay.style.display="block";
+						btnplay.estado=2;
+					}
+				}
+			});
+		}
+		function desordenarArray(array){
+			array = array.sort(function() {return Math.random() - 0.5});
+		}
+		function tomarConector(texto){
+			switch(texto){
+				case 'berma':
+					return('una');
+				break;
+				case 'señal de sentido sur norte':
+					return('la');
+				break;
+				case 'carril':
+					return('un');
+				break;
+				case 'calzada':
+					return('la');
+				break;
+				case 'andén':
+					return('el');
+				break;
+				case 'señal de sentido norte sur':
+					return('la');
+				break;
+			}
+		}
+		function playAnimation(number){
+			switch(number){
+				case 1:
+					//muestra la escena y el dialogo
+					escena.classList.add('zoomIn');
+					escena.style.display="block";
+					eliminateClassAnimationEnd(escena,'zoomIn',null);
+					diag1.classList.add('fadeInUp');
+					diag1.style.display="block";
+					eliminateClassAnimationEnd(diag1,'fadeInUp',null);
+				break
+				case 2:
+					//muestra la escena, el dialogo y los puntos
+					playAnimation(1);
+					setTimeout(function(){
+						let puntos=document.querySelectorAll(".punto");
+						puntos.forEach(function(item){
+							item.style.display="block";
+							item.classList.add("zoomIn");
+							eliminateClassAnimationEnd(item,'zoomIn',null);
+						});
+					},1000);
+				break;
+				case 3:
+					//muestra la escena, el dialogo y los puntos con pulse
+					playAnimation(2);
+					setTimeout(function(){
+						let puntos=document.querySelectorAll(".punto");
+						puntos.forEach(function(item){
+							item.classList.add("pulse");
+						});
+					},1000);
+				break;
+				case 4:
+					//baja el diag
+					moverA(diag1,410,0,1);
+					diag1.pos="down";
+				break;
+				case 5:
+					//sube el diag
+					moverA(diag1,260,0,1);
+					diag1.pos="up";
+				break;
+				case 6:
+					//cambia el color de los puntos
+					let puntos=document.querySelectorAll(".punto");
+					puntos.forEach(function(item){item.style.backgroundColor="orange";});
+				break;
+			}
+		}
+		function mostrarMsg(number,datos){
+			switch(number){
+				case 1:
+					titulo.textContent="Calzada";
+					ctxt.textContent="Es el espacio de circulación de los vehículos, puede tener uno o más carriles y diferentes sentidos. La calzada de la imagen tiene dos carriles y dos sentidos de circulación."
+				break;
+				case 2:
+					titulo.textContent="Sentido";
+					ctxt.textContent="Indica la dirección que deben tener los vehículos para circular sobre el carril. En este caso, el sentido seleccionado indica que los vehículos deben transitar de norte a sur.";
+				break;
+				case 3:
+					titulo.textContent="Sentido";
+					ctxt.textContent="Indica la dirección que deben tener los vehículos para circular sobre el carril. En este caso, el sentido seleccionado indica que los vehículos deben transitar de sur a norte.";
+				break;
+				case 4:
+					titulo.textContent="Carril";
+					ctxt.textContent="Es el espacio dentro de la calzada donde los vehículos pueden transitar en una sola fila. En este caso, has seleccionado el carril que transita el vehículo verde, con dirección sur norte."
+				break;
+				case 5:
+					titulo.textContent="Carril";
+					ctxt.textContent="Es el espacio dentro de la calzada donde los vehículos pueden transitar en una sola fila. En este caso, has seleccionado el carril que transita el vehículo amarillo, con dirección norte sur."
+				break;
+				case 6:
+					titulo.textContent="Acera o Andén";
+					ctxt.textContent="Es el espacio de la vía destinado únicamente para el tránsito de peatones."
+				break;
+				case 7:
+					titulo.textContent="Berma";
+					ctxt.textContent="Es el espacio a los costados de la vía por el cual los vehículos no pueden transitar. Se utiliza para el tránsito de personas en los casos donde no hay Acera o Andén o para parquear vehículos por alguna emergencia."
+				break;
+				case 8:
+					titulo.textContent="Berma";
+					ctxt.textContent="Es el espacio a los costados de la vía por el cual los vehículos no pueden transitar. Se utiliza para el tránsito de personas en los casos donde no hay Acera o Andén o para parquear vehículos por alguna emergencia."
+				break;
+				case 9:
+					titulo.textContent="Actividad";
+					ctxt.textContent="Te preguntaré algunas partes de la calzada para que las presiones."
+					btnplay.estado=3;
+					playAnimation(6);
+				break;
+				case 10:
+					if(partes2.length>0){
+						titulo.textContent="Actividad";
+						let conector=tomarConector(partes2[0]);
+						ctxt.textContent=`Presiona ${conector} ${partes2[0]}`;
+						policia.setAttribute('src','img/pidle.svg');
+					}else{
+						mostrarMsg(13);
+					}
+				break;
+				case 11:
+					titulo.textContent="Actividad";
+					ctxt.textContent="¡Muy bien!, has presionado correctamente.";
+					policia.setAttribute('src','img/pbien.svg');
+					playAnimation(5);
+				break;
+				case 12:
+					titulo.textContent="Actividad";
+					ctxt.textContent="¡Te has equivocado!, intentalo de nuevo.";
+					policia.setAttribute('src','img/pmal.svg');
+					playAnimation(5);
+				break;
+				case 13:
+					titulo.textContent="Actividad finalizada";
+					ctxt.textContent="¡Felicitaciones!, hemos terminado esta actividad, espero hayas aprendido a reconocer las diferentes partes de la calzada.";
+					policia.setAttribute('src','img/pbien.svg');
+					playAnimation(5);
+					btnplay.estado=4;
+					recargar.style.display="block";
+				break;
+			}
+		}
+	</script>
+
+	<!--code central-->
+	<script type="text/javascript">
+		let lecturas=0;
+		let partes=['calzada','señal de sentido norte sur','señal de sentido sur norte','carril','carril','andén','berma','berma'];
+		let partes2=['calzada','señal de sentido norte sur','señal de sentido sur norte','carril','andén','berma'];
+		let indice=0;
+		window.onload=function(){
+			diag1.pos="up";
+			playAnimation(3);
+			btnplay.estado=1;
+			colocarIdentificadores();
+			desordenarArray(partes2);
+		}
+		function colocarIdentificadores(){
+			let puntos=document.querySelectorAll(".punto");
+			puntos.forEach(function(item,index){
+				item.ident=partes[index];
+			});
+		}
+	</script>
+
+	<!--botones-->
+	<script type="text/javascript">
+		diag1.addEventListener("click",function(){
+			let pos=diag1.pos;
+			pos==="up" ? playAnimation(4) : playAnimation(5);
+		});
+
+		recargar.addEventListener('click',function(){
+			window.location.reload();
+		});
+
+		btnplay.addEventListener("click",function(event){
+			event.stopPropagation();
+			switch(this.estado){
+				case 1:
+					playAnimation(4);
+				break;
+				case 2:
+					mostrarMsg(9);
+				break;
+				case 3:
+					mostrarMsg(10);
+				break;
+			}
+		});
+
+		let puntos=document.querySelectorAll(".punto");
+		puntos.forEach(function(item){
+			item.leido=false;
+			item.addEventListener('click',function(){
+				if(btnplay.estado===1){
+					let id=event.target.id.split('punto')[1];
+					console.log(id);
+					playAnimation(5);
+					mostrarMsg(Number(id));
+					item.style.backgroundColor="#45FD45";
+					item.leido=true;
+					revisarLeidos();
+				}else if(btnplay.estado===3){
+					let ident=event.target.ident;
+					//console.log(ident);
+					//console.log(partes2[0]);
+					if(ident===partes2[0]){
+						event.target.style.backgroundColor="#45FD45";
+						mostrarMsg(11);
+						partes2.shift();
+					}else{
+						event.target.style.backgroundColor="#FC4254";
+						mostrarMsg(12);
+					}
+				}
+			});
+		});
+	</script>
+
+	<!--script del menu-->
+	<script type="text/javascript">
+		let menu=document.getElementById("menu");
+		let btnmenu=document.getElementById("btnmenu");
+		let btnfulls=document.getElementById("btnfulls");
+		let btncerrar=document.getElementById("btncerrar");
+
+		btnmenu.addEventListener("click", function(){
+			if(menu.classList.contains('open')){
+				plegarMenu();
+			}else{
+				desplegarMenu();
+			}
+		});
+		btnfulls.addEventListener("click",function(){
+			toggleFullscreen(document.getElementById("marco"));
+		});
+		btncerrar.addEventListener("click",function(){
+			console.log("esperando codigo para cerrar");
+			plegarMenu();
+		});
+		function desplegarMenu(){
+			btnmenu.style.transform="rotate(90deg)";
+			addStyle(btnfulls,{'top':'35px','opacity':'1'});
+			addStyle(btncerrar,{'top':'70px','opacity':'1'});
+			menu.classList.add("open");
+		}
+		function plegarMenu(){
+			btnmenu.style.transform="rotate(0deg)";
+			addStyle(btnfulls,{'top':'0px','opacity':'0'});
+			addStyle(btncerrar,{'top':'0px','opacity':'0'});
+			menu.classList.remove("open");
+		}
+		function toggleFullscreen(element) {
+		  if (
+		    !document.fullscreenElement &&
+		    !document.mozFullScreenElement && 
+		    !document.webkitFullscreenElement && 
+		    !document.msFullscreenElement
+		  ) { // El elemento no está en modo de pantalla completa
+		    colocarFullS(element);
+			ponerIconoQF();
+			plegarMenu();
+		  } else { // El elemento está en modo de pantalla completa
+		    quitarFullS(element);
+		    ponerIconoF();
+		    plegarMenu();
+		  }
+		}
+		function colocarFullS(element){
+			if (element.requestFullscreen) {
+		      element.requestFullscreen();
+		    } else if (element.mozRequestFullScreen) {
+		      element.mozRequestFullScreen();
+		    } else if (element.webkitRequestFullscreen) {
+		      element.webkitRequestFullscreen();
+		    } else if (element.msRequestFullscreen) {
+		      element.msRequestFullscreen();
+		    }
+		}
+		function quitarFullS(element){
+			if (document.exitFullscreen) {
+		      document.exitFullscreen();
+		    } else if (document.mozCancelFullScreen) {
+		      document.mozCancelFullScreen();
+		    } else if (document.webkitExitFullscreen) {
+		      document.webkitExitFullscreen();
+		    } else if (document.msExitFullscreen) {
+		      document.msExitFullscreen();
+		    }
+		}
+		function ponerIconoQF(){btnfulls.style.backgroundImage="url('img/btnfs2.svg')";}
+		function ponerIconoF(){btnfulls.style.backgroundImage="url('img/btnfs.svg')";}
+		function addStyle(element, stylejson) {
+		    for (const property in stylejson) {
+		        //console.log(`${property}: ${stylejson[property]}`);
+		        element.style[property] = stylejson[property];
+		    }
+		}
+	</script>
+</body>
+</html>
