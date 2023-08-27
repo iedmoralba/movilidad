@@ -1,0 +1,30 @@
+*{border: 0; padding: 0; margin: 0; box-sizing: border-box;}
+		#lienzo{
+			width: 731px;
+			height: 411px;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			position: relative;
+			overflow: hidden;
+			user-select: none;
+		}
+		.fondo{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top:0px; left: 0px;
+			box-shadow: 5px 5px black;
+		}
+#diploma{
+	width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    margin: 0 auto;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    display: none;
+}

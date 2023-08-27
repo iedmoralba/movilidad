@@ -1,0 +1,46 @@
+#retro{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0px; left: 0px;
+	display: none;
+	z-index: 5;
+}
+#vidrio{
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.5;
+}
+#policia{
+	position: absolute;
+    top: 140px;
+    left: 25px;
+    width: 150px;
+}
+#contxt{
+	position: absolute;
+    top: 31px;
+    left: 99px;
+    width: 553px;
+    height: 350px;
+    border-radius: 10px;
+    background: white;
+    padding: 40px 80px 20px 80px;
+}
+#contxt img{
+	width: 130px;
+	display: block;
+	margin:0 auto;
+	margin-bottom: 20px;
+}
+#titulo{
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+#desc{
+	text-align: center;
+	font-family: 'Roboto Slab', serif;
+}

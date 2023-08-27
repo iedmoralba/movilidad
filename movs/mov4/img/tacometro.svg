@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   viewBox="0.00 0.00 512.00 512.00"
+   id="svg907"
+   sodipodi:docname="tacometro.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <metadata
+     id="metadata913">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs911" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     id="namedview909"
+     showgrid="false"
+     inkscape:zoom="1.3046875"
+     inkscape:cx="256"
+     inkscape:cy="256"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg907" />
+  <path
+     fill="#000000"
+     d="   M 251.83 0.00   L 260.04 0.00   C 398.35 3.45 507.71 111.30 512.00 250.08   L 512.00 261.55   Q 511.50 275.91 509.65 290.11   C 508.23 300.97 493.99 303.26 490.50 293.11   Q 489.55 290.37 490.26 284.33   C 508.97 124.87 367.97 -6.54 209.50 24.58   C 114.12 43.30 37.77 122.27 23.00 218.26   C 7.39 319.76 57.60 421.33 150.42 467.07   C 264.18 523.14 400.10 481.41 462.51 370.37   C 469.41 358.10 486.83 367.68 479.94 380.04   C 435.17 460.29 353.93 508.75 261.92 512.00   L 249.73 512.00   C 111.42 507.51 3.13 398.18 0.00 259.92   L 0.00 252.21   C 3.53 113.32 112.15 3.07 251.83 0.00   Z"
+     id="path865" />
+  <path
+     fill="#000000"
+     d="   M 101.47 405.36   C 19.51 320.30 21.06 184.99 105.80 102.28   C 193.93 16.27 334.91 21.89 416.60 112.83   C 491.76 196.49 488.30 325.83 409.72 406.22   Q 401.83 414.29 395.94 417.10   Q 381.28 424.09 366.33 414.18   Q 311.98 378.19 248.72 380.19   C 214.02 381.30 179.77 392.14 150.81 410.80   C 145.61 414.15 141.46 417.32 135.91 418.71   C 121.11 422.41 112.01 416.30 101.47 405.36   Z   M 130.43 106.90   C 42.74 180.58 37.24 314.61 119.62 395.23   C 124.45 399.96 128.79 401.52 134.57 397.58   C 207.75 347.65 302.71 347.78 376.20 396.72   C 382.04 400.61 386.39 401.13 391.55 396.05   C 435.76 352.63 457.13 293.44 449.42 231.70   C 435.87 123.34 334.88 46.86 226.74 63.23   Q 172.66 71.42 130.43 106.90   Z"
+     id="path867" />
+  <rect
+     fill="#000000"
+     x="-9.95"
+     y="-22.34"
+     transform="translate(216.52,108.67) rotate(-15.1)"
+     width="19.90"
+     height="44.68"
+     rx="9.56"
+     id="rect869" />
+  <rect
+     fill="#000000"
+     x="-9.95"
+     y="-22.34"
+     transform="translate(295.48,108.68) rotate(15.1)"
+     width="19.90"
+     height="44.68"
+     rx="9.56"
+     id="rect871" />
+  <circle
+     fill="#000000"
+     cx="256.00"
+     cy="115.99"
+     r="9.94"
+     id="circle873" />
+  <circle
+     fill="#000000"
+     cx="185.98"
+     cy="134.73"
+     r="9.94"
+     id="circle875" />
+  <circle
+     fill="#000000"
+     cx="326.00"
+     cy="134.72"
+     r="9.93"
+     id="circle877" />
+  <rect
+     fill="#000000"
+     x="-9.94"
+     y="-22.37"
+     transform="translate(148.18,148.18) rotate(-45.0)"
+     width="19.88"
+     height="44.74"
+     rx="9.63"
+     id="rect879" />
+  <circle
+     fill="#000000"
+     cx="134.72"
+     cy="185.98"
+     r="9.93"
+     id="circle883" />
+  <circle
+     fill="#000000"
+     cx="377.27"
+     cy="185.99"
+     r="9.93"
+     id="circle885" />
+  <rect
+     fill="#000000"
+     x="-22.33"
+     y="-9.96"
+     transform="translate(108.67,216.52) rotate(15.2)"
+     width="44.66"
+     height="19.92"
+     rx="9.57"
+     id="rect887" />
+  <rect
+     fill="#000000"
+     x="-22.34"
+     y="-9.92"
+     transform="translate(403.31,216.50) rotate(-15.1)"
+     width="44.68"
+     height="19.84"
+     rx="9.52"
+     id="rect889" />
+  <circle
+     fill="#000000"
+     cx="115.99"
+     cy="256.00"
+     r="9.94"
+     id="circle891" />
+  <circle
+     fill="#000000"
+     cx="396.00"
+     cy="256.00"
+     r="9.94"
+     id="circle893" />
+  <rect
+     fill="#000000"
+     x="-22.34"
+     y="-9.92"
+     transform="translate(108.67,295.45) rotate(-15.1)"
+     width="44.68"
+     height="19.84"
+     rx="9.53"
+     id="rect895" />
+  <rect
+     fill="#000000"
+     x="-22.34"
+     y="-9.93"
+     transform="translate(403.33,295.43) rotate(15.1)"
+     width="44.68"
+     height="19.86"
+     rx="9.53"
+     id="rect897" />
+  <circle
+     fill="#000000"
+     cx="134.73"
+     cy="326.00"
+     r="9.93"
+     id="circle899" />
+  <circle
+     fill="#000000"
+     cx="377.26"
+     cy="326.01"
+     r="9.93"
+     id="circle901" />
+  <circle
+     fill="#000000"
+     cx="489.54"
+     cy="333.42"
+     r="9.93"
+     id="circle903" />
+  <rect
+     fill="#000000"
+     x="-49.90"
+     y="-9.98"
+     transform="translate(256.00,431.00) rotate(0.1)"
+     width="99.80"
+     height="19.96"
+     rx="9.76"
+     id="rect905" />
+  <rect
+     style="fill:#000000"
+     x="360.14639"
+     y="-155.3327"
+     transform="rotate(41.981844)"
+     width="19.9"
+     height="44.68"
+     rx="9.5600004"
+     id="rect871-7" />
+</svg>

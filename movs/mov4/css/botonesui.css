@@ -1,0 +1,136 @@
+/*flechas*/
+		#flechas{
+		    width: 162px;
+		    height: 104px;
+		    position: absolute;
+		    top: 301px;
+		    left: 4px;
+		    display: none;
+		}
+		.flecha{
+			border-radius: 5px;
+			width: 48px;
+			aspect-ratio: 1/1;
+			display: block;
+			position: relative;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#conflechas{
+			width: 162px;
+		    height: 104px;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    display: flex;
+		    flex-wrap: wrap;
+		    justify-content: space-around;
+		    align-items: flex-start;
+		}
+		.oculto{
+			visibility: hidden;
+		}
+
+		.btn1 {
+		    position: absolute;
+		    border: 2px solid black;
+		    border-radius: 5px;
+		    width: 48px;
+		    aspect-ratio: 1/1;
+		    top: 0px;
+		    left: 0px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    cursor: pointer;
+		    font-weight: bold;
+		    font-size: 30px;
+		    opacity: 0.5;
+		    font-family: 'Carter One', cursive;
+		}
+		#acel {
+		    top: 356px;
+		    left: 677px;
+		    display: none;
+		}
+		#fren {
+		    top: 356px;
+		    left: 625px;
+		    display: none;
+		}
+		#fondoflechas{
+			position: absolute;
+			top:0px; left: 0px;
+			width: 162px;
+		    height: 104px;
+		    opacity: 0.5;
+		}
+		#tacometro{
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			top:326px; left:540px;
+			display: none;
+		}
+		#tacometro img{
+			width: 100%;
+		}
+		#valortacometro{
+			position: absolute;
+			top:0px; left: 0px;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 22px;
+			font-family: 'Chakra Petch', sans-serif;
+		}
+		#timer-container{
+			position: absolute;
+			z-index: 7;
+		    top: 8px;
+		    left: 585px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    /* height: 200px; */
+		    font-size: 22px;
+		    font-family: 'Chakra Petch', sans-serif;
+		}
+		#menu {
+		    position: absolute;
+		    top: 5px;
+		    right: 35px;
+		    z-index: 2;
+		}
+		#btnmenu {
+		    top: 0px;
+		    width: 30px;
+		    height: 30px;
+		    background-size: 100% 100%;
+		    transition: transform 0.5s ease;
+		    animation-duration: 1s;
+		    position: absolute;
+		    z-index: 2;
+		    cursor: pointer;
+		    background-color: white;
+		    border-radius: 50%;
+		}
+		#btnfulls {
+		    top: 0px;
+		    background-size: 100% 100%;
+		    animation-duration: 1s;
+		}
+		.btnmenu {
+		    position: absolute;
+		    width: 30px;
+		    height: 30px;
+		    left: 0px;
+		    opacity: 0;
+		    transition: top 0.5s ease, opacity 0.5s ease;
+		    cursor: pointer;
+		}
+

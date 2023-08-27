@@ -1,0 +1,51 @@
+.auto{
+	position: absolute;
+	top: 175px;
+    left: 7px;
+	width: 20px;
+	height: 35px;
+	transform-origin: 50% 50%;
+	transform: rotate(90deg);
+	z-index: 3;
+}
+#auto2,#auto3,#auto4{left: -25px;}
+		
+#auto5,#auto6{
+	transform: rotate(180deg);
+	top:-30px;
+	left: 483px;
+}
+#auto7,#auto8{
+	transform: rotate(-90deg);
+	top:237px;
+	left:735px;
+}
+#auto9,#auto10{
+	transform: rotate(180deg);
+    top: -30px;
+    left: 329px;
+}
+#auto11,#auto12,#auto13,#auto14,#auto15{
+	top: 210px;
+    left: -25px;
+}
+#auto16{
+	transform: rotate(180deg);
+    top: -30px;
+    left: 484px;
+}
+#auto17,#auto18,#auto19,#auto20,#auto21,#auto22,#auto23,#auto24{
+	transform: rotate(-90deg);
+    top: 175px;
+    left: 736px;
+}
+#auto25,#auto26{
+	transform: rotate(180deg);
+    top: -30px;
+    left: 368px;
+}
+#auto27{
+	transform: rotate(90deg);
+    top: 234px;
+    left: -25px;
+}

@@ -1,0 +1,33 @@
+.diap{
+	display: none;
+}
+#diap0{
+	display: block;
+}
+#portada{
+	width: 100%;
+}
+#btnplay{
+	position: absolute;
+    top: 270px;
+    left: 523px;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: none;
+}
+.diapfondo{
+	position: absolute;
+	top:0px; left: 0px;
+	width: 100%; height: 100%;
+	opacity: 1;
+}
+#txtloading{
+	position: absolute;
+    top: 270px;
+    left: 523px;
+    color: white;
+    font-size: 20px;
+}

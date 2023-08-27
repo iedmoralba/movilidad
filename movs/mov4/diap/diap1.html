@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="../js/escalarCentrar.js"></script>
+	<script type="text/javascript" src="../js/auto.js"></script>
+	<script type="text/javascript" src="../js/zonaColision.js"></script>
+	<title>MoralbaMovilidad</title>
+	<link rel="stylesheet" href="../css/initial.css">
+	<link rel="stylesheet" href="../css/auto.css">
+	<link rel="stylesheet" href="../css/diap.css">
+	<link rel="stylesheet" href="../css/senales.css">
+	<link rel="stylesheet" href="../css/botonesui.css">
+	<link rel="stylesheet" href="../css/zonascolision.css">
+	<link rel="stylesheet" href="../css/retro.css">
+	<link rel="stylesheet" href="../css/otros.css">
+</head>
+<body>
+	<div id="marco">
+		<div id="lienzo">
+			<div id="diap0" class="diap">
+				<img src="../img/portada.svg" id="portada">
+				<img src="../img/btnplay.svg" id="btnplay">
+				<div id="txtloading">Loading...</div>
+			</div>
+			<div id="diap1" class="diap">
+				<img src="../img/fondo-minimalista-dibujado-mano_23-2148999828.jpg" class="diapfondo">
+				<img src="../img/d1.svg" class="fondo">
+				<div class="zonaColision" id="zona1"></div>	
+				<img src="../img/auto.png" id="auto" class="auto">
+			</div>
+			<div id="diap2" class="diap">
+				<img src="../img/fondo-geometrico-plano_23-2148957201.jpg" class="diapfondo">
+				<img src="../img/d2.svg" class="fondo">
+				<img src="../img/auto.png" id="auto2" class="auto">
+				<img src="../img/anunciopare.svg" class="senal anunciopare">
+				<div class="zonaColision" id="zona2"></div>
+			</div>
+			<div id="diap3" class="diap">
+				<img src="../img/fondo-abstracto-formas-blancas_79603-1362.jpg" class="diapfondo">
+				<img src="../img/d3.svg" class="fondo">
+				<div class="zonaColision" id="pare1"></div>	
+				<img src="../img/pare.svg" class="senal pare">
+				<img src="../img/siga.svg" class="senal siga">
+				<img src="../img/curvapder.svg" class="senal curvapder">
+				<div class="zonaColision" id="zona3"></div>	
+				<div class="zonaColision" id="zona4"></div>	
+				<img src="../img/auto.png" id="auto3" class="auto">
+			</div>
+			<div id="diap4" class="diap">
+				<img src="../img/fondo-memphis-semitono-azul-lineas-amarillas-formas-circulos_1017-31954.jpg" class="diapfondo">
+				<img src="../img/d4.svg" class="fondo">
+				<img src="../img/girobder.svg" class="senal girobder">
+				<div class="zonaColision" id="zona5"></div>	
+				<div class="zonaColision" id="zona6"></div>	
+				<img src="../img/auto.png" id="auto4" class="auto">
+			</div>
+			<div id="diap5" class="diap">
+				<img src="../img/fondo-geometrico-plano_23-2148957201.jpg" class="diapfondo">
+				<img src="../img/d5.svg" class="fondo">
+				<img src="../img/curvapder.svg" class="senal curvapder2">
+				<div class="zonaColision" id="zona7"></div>
+				<img src="../img/auto.png" id="auto5" class="auto">
+			</div>
+			<div id="diap6" class="diap">
+				<img src="../img/fondo-formas-hexagono-abstracto-degradado_23-2149120168.jpg" class="diapfondo">
+				<img src="../img/d6.svg" class="fondo">
+				<img src="../img/girobder.svg" class="senal girobder2">
+				<div class="zonaColision" id="zona8"></div>
+				<div class="zonaColision" id="zona9"></div>
+				<img src="../img/auto.png" id="auto6" class="auto">
+			</div>
+			<div id="diap7" class="diap">
+				<img src="../img/fondo-geometrico-verde-abstracto_23-2148374529.jpg" class="diapfondo">
+				<img src="../img/d7.svg" class="fondo">
+				<img src="../img/anunsemaforo.svg" class="senal anunsemaforo">
+				<div class="zonaColision" id="zona10"></div>
+				<img src="../img/auto.png" id="auto7" class="auto">
+			</div>
+			<div id="diap8" class="diap">
+				<img src="../img/fondo-formas-abstractas-dibujadas-mano_23-2149086618.jpg" class="diapfondo">
+				<img src="../img/d8.svg" class="fondo">
+				<img src="../img/girobizq.svg" class="senal girobizq">
+				<div class="zonaColision" id="semaforo1"></div>	
+				<div id="contsemaforo1" class="senal">
+					<img src="../img/semaforo.svg" class="senal semaforo">
+					<div class="luz" id="luzroja1"></div>
+					<div class="luz" id="luzamarilla1"></div>
+					<div class="luz" id="luzverde1"></div>
+				</div>
+				<div class="zonaColision" id="zona11"></div>
+				<div class="zonaColision" id="zona12"></div>
+				<img src="../img/auto.png" id="auto8" class="auto">
+			</div>
+			<div id="diap9" class="diap">
+				<img src="../img/fondo-geometrico-abstracto-degradado_23-2149120339.jpg" class="diapfondo">
+				<img src="../img/d9.svg" class="fondo">
+				<img src="../img/curvapizq.svg" class="senal curvapizq">
+				<div class="zonaColision" id="zona13"></div>
+				<img src="../img/auto.png" id="auto9" class="auto">
+			</div>
+			<div id="diap10" class="diap">
+				<img src="../img/fondo-semitono-abstracto_23-2148595343.jpg" class="diapfondo">
+				<img src="../img/d10.svg" class="fondo">
+				<div class="zonaColision" id="zona14"></div>
+				<div class="zonaColision" id="zona15"></div>
+				<img src="../img/auto.png" id="auto10" class="auto">
+			</div>
+			<div id="diap11" class="diap">
+				<img src="../img/fondo-garabato-abstracto-plano_23-2149315774.jpg" class="diapfondo">
+				<!--es necesario arreglar esta imagen-->
+				<img src="../img/d11.svg" class="fondo">
+				<img src="../img/ensaizq.svg" class="senal ensaizq">
+				<div class="zonaColision" id="zona16"></div>
+				<img src="../img/auto.png" id="auto11" class="auto">
+			</div>
+			<div id="diap12" class="diap">
+				<img src="../img/fondo-formas-dibujadas-mano_23-2148976373.jpg" class="diapfondo">
+				<img src="../img/d12.svg" class="fondo">
+				<div class="zonaColision" id="zona17"></div>
+				<img src="../img/auto.png" id="auto12" class="auto">
+			</div>
+			<div id="diap13" class="diap">
+				<img src="../img/concepto-fondo-abstracto_23-2148557828.jpg" class="diapfondo">
+				<img src="../img/d13.svg" class="fondo">
+				<img src="../img/reduizq.svg" class="senal reduizq">
+				<div class="zonaColision" id="zona18"></div>
+				<img src="../img/auto.png" id="auto13" class="auto">
+			</div>
+			<div id="diap14" class="diap">
+				<img src="../img/fondo-minimo-abstracto_52683-41567.jpg" class="diapfondo">
+				<img src="../img/d14.svg" class="fondo">
+				<img src="../img/curvapder.svg" class="senal curvapder3">
+				<div class="zonaColision" id="zona19"></div>
+				<img src="../img/auto.png" id="auto14" class="auto">
+			</div>
+			<div id="diap15" class="diap">
+				<img src="../img/fondo-minimalista-dibujado-mano_23-2148999828.jpg" class="diapfondo">
+				<img src="../img/d15.svg" class="fondo">
+				<img src="../img/girobder.svg" class="senal girobder3">
+				<img src="../img/curvapder.svg" class="senal curvapder4">
+				<div class="zonaColision" id="zona20"></div>
+				<div class="zonaColision" id="zona21"></div>
+				<img src="../img/auto.png" id="auto15" class="auto">
+			</div>
+			<div id="diap16" class="diap">
+				<img src="../img/underwater-2966572_1280.jpg" class="diapfondo">
+				<img src="../img/d16.svg" class="fondo">
+				<img src="../img/girobder.svg" class="senal girobder4">
+				<div class="zonaColision" id="zona22"></div>
+				<div class="zonaColision" id="zona23"></div>
+				<img src="../img/auto.png" id="auto16" class="auto">
+			</div>
+			<div id="diap17" class="diap">
+				<img src="../img/fondo-geometrico-plano_23-2148967370.jpg" class="diapfondo">
+				<img src="../img/d17.svg" class="fondo">
+				<img src="../img/ensader.svg" class="senal ensader">
+				<div class="zonaColision" id="zona24"></div>
+				<img src="../img/auto.png" id="auto17" class="auto">
+			</div>
+			<div id="diap18" class="diap">
+				<img src="../img/fondo-abstracto-formas-blancas_79603-1362.jpg" class="diapfondo">
+				<img src="../img/d18.svg" class="fondo">
+				<div class="zonaColision" id="zona25"></div>
+				<img src="../img/auto.png" id="auto18" class="auto">
+			</div>
+			<div id="diap19" class="diap">
+				<img src="../img/fondo-memphis-semitono-azul-lineas-amarillas-formas-circulos_1017-31954.jpg" class="diapfondo">
+				<img src="../img/d19.svg" class="fondo">
+				<img src="../img/doscontrauno.svg" class="senal doscontrauno">
+				<div class="zonaColision" id="zona26"></div>
+				<img src="../img/auto.png" id="auto19" class="auto">
+			</div>
+			<div id="diap20" class="diap">
+				<img src="../img/fondo-geometrico-plano_23-2148957201.jpg" class="diapfondo">
+				<img src="../img/d20.svg" class="fondo">
+				<img src="../img/vel30.svg" class="senal vel30">
+				<div class="zonaColision" id="zona27"></div>
+				<img src="../img/auto.png" id="auto20" class="auto">
+			</div>
+			<div id="diap21" class="diap">
+				<img src="../img/fondo-formas-hexagono-abstracto-degradado_23-2149120168.jpg" class="diapfondo">
+				<img src="../img/d21.svg" class="fondo">
+				<img src="../img/redasim.svg" class="senal redasim">
+				<div class="zonaColision" id="zona38"></div>
+				<div class="zonaColision" id="zona28"></div>
+				<img src="../img/auto.png" id="auto21" class="auto">
+			</div>
+			<div id="diap22" class="diap">
+				<img src="../img/fondo-geometrico-verde-abstracto_23-2148374529.jpg" class="diapfondo">
+				<img src="../img/d22.svg" class="fondo">
+				<img src="../img/anunsemaforo.svg" class="senal anunsemaforo2">
+				<div class="zonaColision" id="zona29"></div>
+				<img src="../img/auto.png" id="auto22" class="auto">
+			</div>
+			<div id="diap23" class="diap">
+				<img src="../img/fondo-formas-abstractas-dibujadas-mano_23-2149086618.jpg" class="diapfondo">
+				<img src="../img/d23.svg" class="fondo">
+				<div class="zonaColision" id="semaforo2"></div>	
+				<div id="contsemaforo2" class="senal">
+					<img src="../img/semaforo.svg" class="senal semaforo">
+					<div class="luz" id="luzroja2"></div>
+					<div class="luz" id="luzamarilla2"></div>
+					<div class="luz" id="luzverde2"></div>
+				</div>
+				<img src="../img/siga.svg" class="senal siga2">
+				<div class="zonaColision" id="zona30"></div>
+				<div class="zonaColision" id="zona31"></div>
+				<img src="../img/auto.png" id="auto23" class="auto">
+			</div>
+			<div id="diap24" class="diap">
+				<img src="../img/fondo-geometrico-abstracto-degradado_23-2149120339.jpg" class="diapfondo">
+				<img src="../img/d24.svg" class="fondo">
+				<img src="../img/nopase.svg" class="senal nopase">
+				<div class="zonaColision" id="zona32"></div>
+				<div class="zonaColision" id="zona33"></div>
+				<img src="../img/auto.png" id="auto24" class="auto">
+			</div>
+			<div id="diap25" class="diap">
+				<img src="../img/fondo-semitono-abstracto_23-2148595343.jpg" class="diapfondo">
+				<img src="../img/d25.svg" class="fondo">
+				<img src="../img/curvapizq.svg" class="senal curvapizq2">
+				<div class="zonaColision" id="zona34"></div>
+				<img src="../img/auto.png" id="auto25" class="auto">
+			</div>
+			<div id="diap26" class="diap">
+				<img src="../img/fondo-garabato-abstracto-plano_23-2149315774.jpg" class="diapfondo">
+				<img src="../img/d26.svg" class="fondo">
+				<img src="../img/girobizq.svg" class="senal girobizq2">
+				<div class="zonaColision" id="zona35"></div>
+				<div class="zonaColision" id="zona36"></div>
+				<img src="../img/auto.png" id="auto26" class="auto">
+			</div>
+			<div id="diap27" class="diap">
+				<img src="../img/fondo-formas-dibujadas-mano_23-2148976373.jpg" class="diapfondo">
+				<img src="../img/d27.svg" class="fondo">
+				<div class="zonaColision" id="zona37"></div>
+				<img src="../img/auto.png" id="auto27" class="auto">
+			</div>
+
+			<div id="acel" class="btn1">A</div>
+			<div id="fren" class="btn1">W</div>
+
+			<div id="flechas">
+				<img src="../img/flechas.svg" id="fondoflechas">
+				<div id="conflechas">
+					<div class="flecha oculto"></div>
+					<div class="flecha" id="ftop"></div>
+					<div class="flecha oculto"></div>
+					<div class="flecha" id="fleft"></div>
+					<div class="flecha" id="fdown"></div>
+					<div class="flecha" id="fright"></div>
+				</div>
+			</div>
+			<div id="tacometro">
+				<img src="../img/tacometro.svg" id="imgtacometro">
+				<div id="valortacometro">0</div>
+			</div>
+			<div id="retro">
+				<div id="vidrio"></div>
+				<div id="contxt">
+					<div id="titulo">Moralba Movilidad</div>
+					<img src="../img/curvapizq.svg" id="imgmsg">
+					<div id="desc"></div>
+				</div>
+				<img src="../img/pidle.svg" id="policia">
+			</div>
+			<img src="../img/diploma.png" id="diploma">
+			<div id="timer-container">
+			  <div id="minutes">00</div>:
+			  <div id="seconds">00</div>:
+			  <div id="milliseconds">000</div>
+			</div>
+			<div id="menu" class="">
+				<img src="../img/menu.svg" id="btnmenu">
+				<img src="../img/btnfs.svg" id="btnfulls" class="btnmenu">
+				<!--<div id="btncerrar" class="btnmenu"></div>-->
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/preload.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="../js/acelfren.js"></script>
+	<script type="text/javascript" src="../js/flechas.js"></script>
+	<script type="text/javascript" src="../js/detectTeclado.js"></script>
+	<script type="text/javascript" src="../js/temporizador.js"></script>
+	<script type="text/javascript" src="../js/menu.js"></script>
+</body>
+</html>
